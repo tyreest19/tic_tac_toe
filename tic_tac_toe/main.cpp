@@ -8,32 +8,74 @@
 
 #include <iostream>
 #include <string>
+#include "CpuPlayer.cpp"
 #include "make_board.cpp"
 #include "Player.cpp"
 using namespace std;
+bool game(char user_turn);
 int main(int argc, const char * argv[]) {
-    Player player;
-    player.set_symbol();
-    make_board board;
-    board.display_board();
-    board.edit_board(player.place_symbol(), player.get_symbol());
-    board.display_board();
-    board.edit_board(player.place_symbol(), player.get_symbol());
-    board.display_board();
-    board.edit_board(player.place_symbol(), player.get_symbol());
-    board.display_board();
-    cout << "did you win: " << player.did_i_win(board.board) << endl;    
-//    board.edit_board("B1", "x");
-//    board.edit_board("B2", "x");
-//    board.edit_board("B3", "x");
-//    board.edit_board("C1", "x");
-//    board.edit_board("C2", "x");
-//    board.edit_board("C3", "x");
-//    cout << endl;
-//    board.display_board();
-//    cout << endl;
-//    board.generate_board();
-//    board.display_board();
-    
+    string user_turn;
+    while (user_turn != "yes" && user_turn != "no") {
+        cout << "do you want to go first yes or no(enter as displayed): ";
+        getline(cin,user_turn);
+    }
+    game(user_turn[0]);
     return 0;
 }
+bool game(char user_turn) {
+    make_board board;
+    Player player;
+    player.set_symbol();
+    CpuPlayer cpu;
+    cpu.set_symbol(player.get_symbol());
+    switch (user_turn) {
+        case 'y': {
+            while (true) {
+                board.display_board();
+                board.edit_board(player.place_symbol(), player.get_symbol());
+                board.display_board();
+                if (player.did_i_win(board.board) == true) {
+                    cout << "congrats you won" << endl;
+                    break;
+                }
+                cout << endl;
+                board.edit_board(cpu.place_symbol(board.board), cpu.get_symbol());
+                board.display_board();
+                if (cpu.did_i_win(board.board)) {
+                    cout << "you lost" << endl;
+                    break;
+                }
+                cout << endl;
+            }
+            break;
+        }
+            
+        case 'n': {
+            while (true) {
+                board.display_board();
+                board.edit_board(cpu.place_symbol(board.board), cpu.get_symbol());
+                cout << endl;
+                board.display_board();
+                if (cpu.did_i_win(board.board)) {
+                    cout << "you lost" << endl;
+                    break;
+                }
+                board.edit_board(player.place_symbol(), player.get_symbol());
+                board.display_board();
+                if (player.did_i_win(board.board) == true) {
+                    cout << "congrats you won" << endl;
+                    break;
+                }
+                cout << endl;
+            }
+        }
+    }
+    return true;
+}
+
+
+
+
+
+
+
