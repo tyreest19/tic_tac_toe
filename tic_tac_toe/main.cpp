@@ -12,7 +12,7 @@
 #include "make_board.cpp"
 #include "Player.cpp"
 using namespace std;
-bool game(char user_turn);
+void game(char user_turn);
 int main(int argc, const char * argv[]) {
     string user_turn;
     while (user_turn != "yes" && user_turn != "no") {
@@ -22,16 +22,16 @@ int main(int argc, const char * argv[]) {
     game(user_turn[0]);
     return 0;
 }
-bool game(char user_turn) {
+void game(char user_turn) {
     make_board board;
     Player player;
     player.set_symbol();
     CpuPlayer cpu;
     cpu.set_symbol(player.get_symbol());
+    board.display_board();
     switch (user_turn) {
         case 'y': {
             while (true) {
-                board.display_board();
                 board.edit_board(player.place_symbol(), player.get_symbol());
                 board.display_board();
                 if (player.did_i_win(board.board) == true) {
@@ -40,6 +40,7 @@ bool game(char user_turn) {
                 }
                 cout << endl;
                 board.edit_board(cpu.place_symbol(board.board), cpu.get_symbol());
+                cout << "oppent has made their move" << endl;
                 board.display_board();
                 if (cpu.did_i_win(board.board)) {
                     cout << "you lost" << endl;
@@ -52,9 +53,8 @@ bool game(char user_turn) {
             
         case 'n': {
             while (true) {
-                board.display_board();
+                cout << "your oppent has made a move" << endl;
                 board.edit_board(cpu.place_symbol(board.board), cpu.get_symbol());
-                cout << endl;
                 board.display_board();
                 if (cpu.did_i_win(board.board)) {
                     cout << "you lost" << endl;
@@ -70,7 +70,6 @@ bool game(char user_turn) {
             }
         }
     }
-    return true;
 }
 
 

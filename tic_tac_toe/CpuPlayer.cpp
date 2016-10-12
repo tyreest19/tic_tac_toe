@@ -26,8 +26,8 @@ string CpuPlayer:: place_symbol(string board[3][3]) {
     while (true) {
         int random_column = rand() % 3;
         int random_row = rand() % 3;
-        if (*(board[random_column] + random_row) != "o" && *(board[random_column] + random_row) != "x") {
-            return *(board[random_column] + random_row);
+        if (board[random_column][random_row] != "o" && board[random_column][random_row] != "x") {
+            return board[random_column][random_row];
         }
     }
 }
