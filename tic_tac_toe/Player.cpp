@@ -73,21 +73,20 @@ bool Player:: vertical_win(string board[3][3]) {
 }
 string Player:: place_symbol() {
     string user_input;
-    do {
-        cout << "choose a location on the board in the format displayed: ";
-        getline(cin, user_input);
-        if (user_input == "A1" || user_input == "A2" || user_input == "A3") {
-            break;
-        }
-        if (user_input == "B1" || user_input == "B2" || user_input == "B3") {
-            break;
-        }
-        if (user_input == "C1" || user_input == "C2" || user_input == "C3") {
-            break;
-        }
-    } while (true);
+    cout << "enter a empty location on the board as displayed: ";
+    getline(cin,user_input);
     return user_input;
 }
-
+bool Player:: tie_game(string board[3][3]) {
+    int filled_spaces = 0;
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            if (board[i][j] == "x" || board[i][j] == "o") {
+                filled_spaces += 1;
+            }
+        }
+    }
+    return filled_spaces == 9;
+}
 
 

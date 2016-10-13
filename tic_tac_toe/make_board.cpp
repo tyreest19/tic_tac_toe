@@ -23,6 +23,18 @@ void make_board:: generate_board() {
 };
 void make_board:: edit_board(string user_input,string player_symbol) {
     if (user_input == "A1" || user_input == "A2" || user_input == "A3") {
+        if (user_input == "A1" && board[0][0] != "A1") {
+            string correct_field = get_correct_input();
+            edit_board(correct_field,player_symbol);
+        }
+        if (user_input == "A2" && board[0][1] != "A2") {
+            string correct_field = get_correct_input();
+            edit_board(correct_field,player_symbol);
+        }
+        if (user_input == "A3" && board[0][2] != "A3") {
+            string correct_field = get_correct_input();
+            edit_board(correct_field,player_symbol);
+        }
         if (user_input == "A1" && board[0][0] != "x" && board[0][0] != "o") {
             board[0][0] = player_symbol;
         }
@@ -32,8 +44,21 @@ void make_board:: edit_board(string user_input,string player_symbol) {
         if (user_input == "A3" && board[0][2] != "x" && board[0][2] != "o") {
             board[0][2] = player_symbol;
             }
+
         }
         if (user_input == "B1" || user_input == "B2" || user_input == "B3") {
+            if (user_input == "B1" && board[1][0] != "B1") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
+            if (user_input == "B2" && board[1][1] != "B2") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
+            if (user_input == "B3" && board[1][2] != "B3") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
             if (user_input == "B1" && board[1][0] != "x" && board[1][0] != "o") {
                 board[1][0] = player_symbol;
             }
@@ -45,6 +70,18 @@ void make_board:: edit_board(string user_input,string player_symbol) {
             }
         }
         if (user_input == "C1" || user_input == "C2" || user_input == "C3") {
+            if (user_input == "C1" && board[2][0] != "C1") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
+            if (user_input == "C2" && board[2][1] != "C2") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
+            if (user_input == "C3" && board[2][2] != "C3") {
+                string correct_field = get_correct_input();
+                edit_board(correct_field,player_symbol);
+            }
             if (user_input == "C1" && board[2][0] != "x" && board[2][0] != "o"){
                 board[2][0] = player_symbol;
             }
@@ -55,10 +92,12 @@ void make_board:: edit_board(string user_input,string player_symbol) {
                 board[2][2] = player_symbol;
             }
         }
-//       else {
-//           string correct_field = get_correct_input();
-//            edit_board(correct_field,player_symbol);
-//       }
+        if (user_input != "A1" && user_input != "A2" && user_input != "A3"  &&
+                 user_input != "B1" && user_input != "B2" && user_input != "B3" &&
+                 user_input != "C1" && user_input != "C2" && user_input != "C3") {
+            string correct_field = get_correct_input();
+            edit_board(correct_field,player_symbol);
+        }
 };
 string make_board:: get_correct_input(){
     string user_input;

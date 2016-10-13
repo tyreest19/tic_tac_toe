@@ -20,6 +20,7 @@ public:
     bool did_i_win(string board[3][3]);
     virtual string place_symbol();
     string symbol;
+    bool tie_game(string board[3][3]);
 protected:
     bool diagonal_win(string board[3][3]);
     bool horizontal_win(string board[3][3]);

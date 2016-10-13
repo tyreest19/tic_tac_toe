@@ -22,6 +22,15 @@ void CpuPlayer:: set_symbol(string player_symbol) {
 }
 
 string CpuPlayer:: place_symbol(string board[3][3]) {
+    if (board[2][0] == "C1") {
+        return "C1";
+    }
+    if (board[1][0] == "B1") {
+        return "B1";
+    }
+    if (board[0][2] == "A3") {
+        return "A3";
+    }
     srand(time(0));
     while (true) {
         int random_column = rand() % 3;
@@ -31,13 +40,18 @@ string CpuPlayer:: place_symbol(string board[3][3]) {
         }
     }
 }
+string CpuPlayer:: first_move(string board[3][3]) {
+    if (board[1][1] == "B2") {
+        return "B2";
+    }
+    if (board[0][2] == "A3") {
+        return "A3";
+    }
+    return "i will never be used";
+}
 
 string convert_int_spot_on_board(int number) {
     return "may need";
-    
-    
-    
-    
 }
 
 

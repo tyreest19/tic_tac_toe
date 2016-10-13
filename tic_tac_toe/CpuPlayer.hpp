@@ -17,6 +17,7 @@ class CpuPlayer: public Player  {
 public:
     void set_symbol(string player_symbol);
     string place_symbol(string board[3][3]);
+    string first_move(string board[3][3]);
 protected:
     string convert_int_spot_on_board(int number);
 };
